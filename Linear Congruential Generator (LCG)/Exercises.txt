@@ -26,17 +26,18 @@ m = 11
 a = 3
 c = 4
 and seed = 2
+
 length is the length of the word key that we want to generate so we will put 10
 And the key that it will generate must be 1017321017
 
 To get the maximum out of the algorithm, we must follow this rule:
 
-• m should be a large number preferably a power of 2
-• a ? 1 should be divisible by all prime factors of m or by 4 if m is divisible by 4
-• c = 0 or c and m coprime 
+â€¢ m should be a large number preferably a power of 2
+â€¢ a - 1 should be divisible by all prime factors of m or by 4 if m is divisible by 4
+â€¢ c = 0 or c and m coprime 
 
 a is crucial for the full period of the LCG 
-Let’s use a small example to demonstrate how the period of the LCG change 
+Letâ€™s use a small example to demonstrate how the period of the LCG change 
 depending on whether a-1 is satisfies the conditions
 
 m = 12
@@ -62,4 +63,4 @@ if (a) is valid for m:
 the higher the a is higher period we have only if a-1 = m 
 if a - 1 > m then even if it fulfills the conditions the period is still 1 
 if (a) in not valid for m:
-The highest period we can have is 4 and it’s for a = 5
+The highest period we can have is 4 and itâ€™s for a = 5
