@@ -1,0 +1,109 @@
+The Blum–Micali algorithm is a cryptographically secure pseudorandom number generator. The algorithm gets its security from the difficulty of computing discrete logarithms
+
+Let pbe an odd prime, and let g be a primitive root modulo p
+Let x0 be a seed, and let
+
+xi+1 = g^xi mod p
+
+The inth output of the algorithm is 1 if xi <= p-1/2 '
+Otherwise the output is 0
+
+ ## Preparation for the Exercises
+Download the BM.py and BM_plt.py
+Go to the terminal and install :
+- pip install time
+- pip install random
+- pip install matplotlib
+
+
+**In the BM.py**
+Now for the first this exercise. Go to the p_and_g array and choose an p and a g of your liking and after that a seed petwin 1 and p-1 
+for this project i have p = 31 , g = 3 and seed = 7
+so we will have an output of 
+Selected p: 31, g: 3, seed: 7        
+The key is 0011010010
+
+notice that like BlumBlumShub we use binary exept from decimal.
+
+
+What will happen if p is not an odd number?
+
+Lets go to the line 24 and uncommend this :
+print(f"the state is {self.state}")
+and put for p = 22 g = 5 and seed = 20
+we get this
+the state is 1
+the state is 5
+the state is 1
+the state is 5
+the state is 1
+the state is 5
+the state is 1
+the state is 5
+the state is 5
+Selected p: 22, g: 5, seed: 20      
+The key is 1111111111
+
+So if we do not adhere to the parameters we will get a much smaller period 
+
+If we put p = 31 g = 11 and seed = 30 and and in the stopwatch function we are going to have the length  = 32 [stopwatch(32)] then we will get :
+the state is 1
+the state is 11
+the state is 24
+the state is 8
+the state is 19
+the state is 22
+the state is 18
+the state is 2
+the state is 28
+the state is 10
+the state is 5
+the state is 6
+the state is 4
+the state is 9
+the state is 23
+the state is 12
+the state is 16
+the state is 20
+the state is 25
+the state is 26
+the state is 7
+the state is 13
+the state is 21
+the state is 27
+the state is 15
+the state is 30
+
+and this will repeat again so the period is 26 in this and what else can we see?
+Ans : we see that the state is dipendand on the p - 1 so for greater p we will get a biger pool of numbers so bigger period.  
+
+Now lets see that randomnes of the algorithm so we are going to uncomment that p_and_g array and the def get_ArrayValue(p_and_g_array) and we are goind to comment the line 24
+
+(Tip: if you are in VS code press Ctrl + k ,Ctrl + U to uncomment that sellected)
+
+After that go to line 45 and copy past this:
+p, g, seed = BlumMicali.get_ArrayValue(p_and_g)
+
+lets generate some keys and see the how changing different p and g will change the key.
+
+After that we are going to see the inpact of the Bit length in time so we are going to alter the stopwatch function we are going to get 
+
+stopwatch(64)
+stopwatch(1024)
+stopwatch(2048)
+
+So we see that the time is vey dipendant on the length 
+
+**in BM_plt.py**
+
+If we go to this code and we put p = 307, g = 154 and seed = 98 then we will see that:
+Generated key: 1111001111000100101100111000101100111000101100111000101100111000101100111000101100111000101100111000
+Number of 1s: 51
+Number of 0s: 49
+
+The number of 0s and 1s are not that far appart
+Try and put different values for p,g and seed based on the array on the BM.py
+we are goind to see that the 1's and 0's stay relativley the same
+
+**Tips**
+if for some reason the state remains the same every time then the seed is not the best one to use in the case and that is because state=g^state mod p produse the same reminder as the seed
