@@ -1,0 +1,96 @@
+Is a common cryptographically strong PRNG,
+developed by Lenore Blum, Manuel Blum and Michael Shub in 1986,
+and extracts a single bit of the entire state,
+
+There is a proof reducing its security to the computational difficulty of factoring.
+
+m = p*q is the product of two large primes p and q
+p and q are both coungruent to 3 mod 4
+s is the seed, where gcd(s, m) = 1
+zn is the least significant bit of xn
+
+ ## Preparation for the Exercises
+Download all the .py files of this folder 
+Go to the terminal and install :
+- pip install time
+- pip install random
+- pip install matplotlib
+
+
+**In the BBS.py**
+
+First lets generate a simple key using the example of the Class 5 so
+fo p = 7 q = 11 and seed = 3
+We get 
+The key is 1001100110
+
+if we uncommend the line 19 we can see that the period of this is 4 
+this happens because we have a small p and q so for bigger numbers we will get bigger periods but what is the Maximum period we can get?
+
+in BBS_period.py you will find a code that prints the maximum, minimum and average period of the algorithm for the same p and q we get that 
+Maximum Period: 4 (Seed: 2)
+Minimum Period: 2 (Seed: 23)
+Average Period: 4
+
+In general for a good period the GCD((p-2)/2 , (q-3)/2) must be a small number 
+Now if we change the p and q to 23 and 11 we get
+ 
+Maximum Period: 20 (Seed: 2)
+Minimum Period: 2 (Seed: 45)        
+Average Period: 17
+
+So we see that for bigger p and q the period gets higher
+
+
+Now to see the randomnes of the algorithm we can run the BBS_arra.py and see what are the different keys we can make (change the length to better see the period if you want)
+
+**in BBS_bitcount.py**
+Now lets combine the previus 2 exercises, if we put p = 23 q = 11 and the seed with the maximum period(2) we will get that the 0s are slitly more than the 1's
+and in some other caises the 0 are much more (seed = 67) but when we use the minimum period (seed = 45 ) we only get 1's
+
+Even if we change the p's and q's we can see that the ratio of 0's and 1;s stay relativley the same
+
+
+**in BBS_plt.py**
+
+If we run the test as it is we see that the time is accending by alot from 2048 to 4096 only if we change the numbers we will get a leative difference but if we only change the seed the change will be mimimum as an example you can take the array from the BBM_array.py and put those to see the difference
+
+**Extra**
+We can see that for different seeds the key that it generates is the same but the state is different for p = 7 and q = 11 with seed 3 we get 
+the state is 9
+the state is 4
+the state is 16
+the state is 25
+the state is 9
+the state is 4
+the state is 16
+the state is 25
+the state is 4
+The key is 1001100110
+
+But if the seed = 48 we get 
+the state is 71
+the state is 36
+the state is 64
+the state is 15
+the state is 71
+the state is 36
+the state is 64
+the state is 15
+the state is 71
+the state is 36
+The key is 1001100110
+
+Can you find another number that outputs the same key using the test.py code??
+
+Valid seeds for p = 7 and q = 11 (m = 77):
+[2, 3, 4, 5, 6, 8, 9, 10, 12, 13, 15, 16, 17, 18, 19, 20, 23, 24, 25, 26, 27, 29, 30, 31, 32, 34, 36, 37, 38, 39, 40, 41, 43, 45, 46, 47, 48, 50, 51, 52, 53, 54, 57, 58, 59, 60, 61, 62, 64, 65, 67, 68, 69, 71, 72, 73, 74, 75, 76]
+
+Ans: 
+If we run the test.py and we put these values in the array we will see that one other number is 53 
+
+
+
+
+
+
