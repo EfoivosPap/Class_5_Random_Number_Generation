@@ -1,0 +1,64 @@
+This is the most used  general-purpose Algorithm for PRNG 
+In the MT19937 variant the period of this algorithm is 2^19937 - 1
+The library "random" in python uses this algorithm
+
+ ## Preparation for the Exercises
+Download the MT.py and MT_plt.py
+Go to the terminal and install time and matplotlib
+- pip install time
+- pip install matplotlib
+
+
+**In the MT.py**
+Now for the first this exercise the variables what we are going to change are:
+  w Word size
+  n State size
+  m  Middle word
+  r  Separation point
+  a  Twist constant (in hexadecimal)
+  seed 
+
+The Tempering parameters are going to stay relativly the same this are the parameters suggested by the MT19937 32 - bit  
+
+Let’s start with a easy one:
+for 
+w = 32
+n = 624
+m = 397
+r = 31
+a = 0x9908b0df
+seed = 5
+ 
+We must get a key like :139271245
+
+Even if we run the code again without any change we will get the same result 
+but if instead we put in line 73:
+
+key = [mt.get_key()for _ in range(100)]
+print(f"The key is: {key}")
+
+We will get differnt values every time. Why?
+
+Because each time we call mt.get_key(), the generator produces the next random number in the sequence. These numbers are different because the state is updated each time a new number is generated. But if we run the code again because we didnt change the seed the sequence of the numbers will not change
+
+Now lets if we have overlapping numbers for different value changes, if we run the same code as of the first exercise we will se that we have no changes and the numbers are relatively different but if we change the state size (n) we will start to see changes:
+If we change n to 5 we will get 
+
+The key is: [139271245, 921823203, 2555376687, 1279593807, 921823203, ......
+
+so we see that the numbers repeat themselfs by redusing the n we essentially telling the algorithm to only work with a very small pool of numbers it may seem random the order of the numbers but the values are not
+
+**in MT_plt.py**
+
+Lets create a histogram. 
+With the same values as the first exercise we can see the that we have a relatively good random generation but again 
+if we change the n to 5 and the we see that the pool of numbers are lower and the frequency of the values is higher
+(you can change the n for big and small valus and see the differences, if you want  n > 1000 change the lenght as well for better visualization)
+ 
+
+**In conclusion** 
+if (a) is valid for m: 
+the higher the a is higher period we have only if a-1 = m 
+if a - 1 > m then even if it fulfills the conditions the period is still 1 
+if (a) in not valid for m:
+The highest period we can have is 4 and it’s for a = 5
